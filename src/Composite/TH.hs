@@ -210,7 +210,9 @@ lensNameFor  = mkName . over _head toLower . nameBase
 prismNameFor = mkName . ("_" ++) . nameBase
 proxyNameFor = mkName . (++ "_") . over _head toLower . nameBase
 
-#if MIN_VERSION_template_haskell(2,17,0)
+#if MIN_VERSION_template_haskell(2,21,0)
+proxyDecFor :: FieldDec () -> Q [Dec]
+#elif MIN_VERSION_template_haskell(2,17,0)
 proxyDecFor :: FieldDec () -> Q [Dec]
 #else
 proxyDecFor :: FieldDec -> Q [Dec]
